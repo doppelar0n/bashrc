@@ -78,6 +78,20 @@ Allows aliases to work even when using `sudo`.
 
 ---
 
+## Preview
+
+![bash](https://github.com/user-attachments/assets/eb1ec43e-fec3-4c2e-8c97-83e0936fa28a)
+
+---
+
+## Install Dependencies 🔧
+
+```bash
+sudo apt update && sudo apt install -y vim git bash-completion
+```
+
+---
+
 ## Usage 📖
 
 1. Copy the `.bashrc` file to your home directory:
