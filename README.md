@@ -105,11 +105,13 @@ sudo apt update && sudo apt install -y vim git bash-completion
 
 ---
 
-Additional Files 📂
+## Additional Files 📂
 
+```bash
 inputrc
+```
 
-If it interests you, I’ve also included my .inputrc file for enhanced input behavior in the terminal. Feel free to check it out!
+If it interests you, I’ve also included my `inputrc` file for enhanced input behavior in the terminal. Feel free to check it out!
 
 ---
 
