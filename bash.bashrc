@@ -96,6 +96,13 @@ fi
 export EDITOR=$(which vim)
 export VISUAL=$(which vim)
 
+# load /etc/environment
+while IFS='=' read -r key value; do
+  if [[ -n "$key" && ! "$key" =~ ^# ]]; then
+    export "$key=$(echo "$value" | sed 's/^"\(.*\)"$/\1/')"
+  fi
+done < /etc/environment
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
