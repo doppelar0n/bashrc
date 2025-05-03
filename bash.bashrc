@@ -96,6 +96,10 @@ ESP_PATH=$HOME/esp/xtensa-esp32-elf/bin
 if [ -d "$ESP_PATH" ]; then
   export PATH="$PATH:$ESP_PATH"
 fi
+ESP_IDF_PATH=$HOME/esp/esp-idf
+if [ -d "$ESP_PATH" ]; then
+  export IDF_PATH=$ESP_IDF_PATH
+fi
 
 # export varaiblen
 export EDITOR=$(which vim)
