@@ -91,6 +91,11 @@ if command -v go >/dev/null 2>&1; then
     export PATH="$PATH:$GOPATH_BIN"
   fi
 fi
+# add esp path
+ESP_PATH=$HOME/esp/xtensa-esp32-elf/bin
+if [ -d "$ESP_PATH" ]; then
+  export PATH="$PATH:$ESP_PATH"
+fi
 
 # export varaiblen
 export EDITOR=$(which vim)
