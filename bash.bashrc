@@ -106,11 +106,23 @@ export EDITOR=$(which vim)
 export VISUAL=$(which vim)
 
 # load /etc/environment
-while IFS='=' read -r key value; do
-  if [[ -n "$key" && ! "$key" =~ ^# ]]; then
-    export "$key=$(echo "$value" | sed 's/^"\(.*\)"$/\1/')"
-  fi
-done < /etc/environment
+if [ -f /etc/environment ]; then
+    while IFS='=' read -r key value; do
+        # Skip lines that are comments or malformed
+        if [[ "$key" =~ ^[A-Za-z_][A-Za-z0-9_]*$ ]]; then
+            export "$key=$value"
+        fi
+    done < <(grep -E '^[A-Za-z_][A-Za-z0-9_]*=.*$' "/etc/environment")
+fi
+# load $HOME/.environment
+if [ -f "$HOME/.environment" ]; then
+    while IFS='=' read -r key value; do
+        # Skip lines that are comments or malformed
+        if [[ "$key" =~ ^[A-Za-z_][A-Za-z0-9_]*$ ]]; then
+            export "$key=$value"
+        fi
+    done < <(grep -E '^[A-Za-z_][A-Za-z0-9_]*=.*$' "$HOME/.environment")
+fi
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -136,3 +148,12 @@ alias lh="ls -lh"
 alias lat="ls -AGFoth"
 
 alias motd="cat /etc/motd"
+
+alias yolo_update='sudo DEBIAN_FRONTEND=noninteractive \
+    apt -o Dpkg::Options::="--force-confold" \
+        -o Dpkg::Options::="--force-confdef" \
+    update && \
+sudo DEBIAN_FRONTEND=noninteractive \
+    apt -o Dpkg::Options::="--force-confold" \
+        -o Dpkg::Options::="--force-confdef" \
+    upgrade -y'
