@@ -156,4 +156,4 @@ alias yolo_update='sudo DEBIAN_FRONTEND=noninteractive \
 sudo DEBIAN_FRONTEND=noninteractive \
     apt -o Dpkg::Options::="--force-confold" \
         -o Dpkg::Options::="--force-confdef" \
-    upgrade -y'
+    full-upgrade -y'
